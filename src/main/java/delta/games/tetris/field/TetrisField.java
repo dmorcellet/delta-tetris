@@ -122,6 +122,48 @@ public class TetrisField
     return -1;
   }
 
+  public int removeAllCompletedLines()
+  {
+    int nbRemoved=0;
+    while(true)
+    {
+      int index=findCompletedLine();
+      if (index!=-1)
+      {
+        removeLine(index);
+        nbRemoved++;
+      }
+      else
+      {
+        break;
+      }
+    }
+    return nbRemoved;
+  }
+
+  public int findCompletedLine()
+  {
+    int index=-1;
+    for(int j=0;j<_height;j++)
+    {
+      boolean completed=true;
+      for(int i=0;i<_width;i++)
+      {
+        if (getPieceAt(i,j)==null)
+        {
+          completed=false;
+          break;
+        }
+      }
+      if (completed)
+      {
+        index=j;
+        break;
+      }
+    }
+    return index;
+  }
+
   /**
    * Remove a line.
    * @param y Vertical position of line to remove.

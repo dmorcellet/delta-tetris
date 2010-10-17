@@ -1,5 +1,7 @@
 package delta.games.tetris.pieces;
 
+import java.awt.Color;
+
 /**
  * A piece of a Tetris game.
  * @author DAM
@@ -8,16 +10,18 @@ public class TetrisPiece
 {
   private TetrisPieceModel _piece;
   private TetrisPieceRotation _rotation;
+  private Color _color;
 
   /**
    * Constructor.
    * @param piece Model for this piece.
    * @param rotation Rotation for this piece.
    */
-  public TetrisPiece(TetrisPieceModel piece, TetrisPieceRotation rotation)
+  public TetrisPiece(TetrisPieceModel piece, TetrisPieceRotation rotation, Color color)
   {
     _piece=piece;
     _rotation=rotation;
+    _color=color;
   }
 
   /**
@@ -52,5 +56,14 @@ public class TetrisPiece
   public TetrisPieceRotation getRotation()
   {
     return _rotation;
+  }
+  
+  /**
+   * Get the color of this piece.
+   * @return a color.
+   */
+  public Color getColor()
+  {
+    return _color;
   }
 }

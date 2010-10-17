@@ -1,5 +1,7 @@
 package delta.games.tetris;
 
+import java.awt.Color;
+
 import junit.framework.TestCase;
 import delta.games.tetris.field.TetrisField;
 import delta.games.tetris.pieces.TetrisPiece;
@@ -32,7 +34,7 @@ public class TestField extends TestCase
       pieceModel=pieces[i];
       position=new TetrisPiecePosition(5,(i+1)*5);
       rotation=TetrisPieceRotation.CLOCKWISE;
-      piece=new TetrisPiece(pieceModel,rotation);
+      piece=new TetrisPiece(pieceModel,rotation,Color.GRAY);
       boolean canPut=field.canPutPiece(piece,position);
       if (canPut)
       {

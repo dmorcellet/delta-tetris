@@ -58,7 +58,7 @@ public final class TetrisPieceRotation
   {
     if (_next==null)
     {
-      if (_index==ROTATIONS.length)
+      if (_index==ROTATIONS.length-1)
       {
         _next=ROTATIONS[0];
       }

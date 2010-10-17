@@ -40,6 +40,8 @@ public class TetrisPiecesRegistry
     buildPiece("a",new String[]{"oo "," Ho" });
     buildPiece("b",new String[]{"oo","Ho" });
     buildPiece("c",new String[]{"o","o","H","o" });
+    buildPiece("d",new String[]{" oo","oH " });
+    buildPiece("e",new String[]{" o ","oHo" });
   }
 
   private void buildPiece(String name, String[] definition)

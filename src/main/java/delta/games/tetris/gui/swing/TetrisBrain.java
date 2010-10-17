@@ -1,5 +1,6 @@
 package delta.games.tetris.gui.swing;
 
+import java.awt.Color;
 import java.util.Random;
 
 import delta.games.tetris.TetrisGame;
@@ -17,7 +18,6 @@ import delta.games.tetris.score.TetrisScoreComputer;
 public class TetrisBrain
 {
   // GUI related objects
-  //private TetrisMainFrame _gui;
   private TetrisFieldPanel _gField;
   // Not GUI objects
   private TetrisGame _game;
@@ -29,10 +29,12 @@ public class TetrisBrain
   // Misc
   private Random _random;
 
-  public TetrisBrain(TetrisGame game, TetrisMainFrame gui)
+  // Colors
+  private static Color[] COLORS={Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK};
+
+  public TetrisBrain(TetrisGame game, TetrisFieldPanel gameField)
   {
-    //_gui=gui;
-    _gField=gui.getFieldPanel();
+    _gField=gameField;
     _game=game;
     _field=game.getField();
     _piecesRegistry=game.getPiecesRegistry();
@@ -43,6 +45,22 @@ public class TetrisBrain
 
   public void doTick()
   {
+    if (_currentPiece==null)
+    {
+      boolean ok=buildNewPiece();
+      if (!ok)
+      {
+        // todo end of game
+      }
+    }
+    if (_currentPiece!=null)
+    {
+      doAutoMovePiece();
+    }
+  }
+  
+  public void doAutoMovePiece()
+  {
     TetrisPiecePosition newPosition=new TetrisPiecePosition(_position.getX(),_position.getY()-1);
     boolean ok=_field.canPutPiece(_currentPiece,newPosition);
     if (ok)
@@ -52,15 +70,47 @@ public class TetrisBrain
     }
     else
     {
+      endOfPiece();
       _currentPiece=null;
       _position=null;
     }
-    _gField.repaint();
+    repaintGameField();
   }
 
   public void handleEndOfPiece()
   {
-    // todo
+    if (_currentPiece!=null)
+    {
+      int x=_position.getX();
+      int y=_position.getY();
+      int previousY=y;
+      
+      while(true)
+      {
+        if (y>0)
+        {
+          TetrisPiecePosition newPosition=new TetrisPiecePosition(x,y-1);
+          boolean ok=_field.canPutPiece(_currentPiece,newPosition);
+          if (!ok)
+          {
+            break;
+          }
+          y--;
+        }
+        else
+        {
+          break;
+        }
+      }
+      if (y!=previousY)
+      {
+        _field.movePiece(_currentPiece,new TetrisPiecePosition(x,y));
+      }
+      endOfPiece();
+      _currentPiece=null;
+      _position=null;
+      repaintGameField();
+    }
   }
 
   public void handleMoveRight()
@@ -100,7 +150,18 @@ public class TetrisBrain
 
   public void handleRotateRight()
   {
-    // todo
+    if (_currentPiece!=null)
+    {
+      _currentPiece.rotate(true);
+      TetrisPiecePosition newPosition=new TetrisPiecePosition(_position.getX()-1,_position.getY());
+      boolean ok=_field.canPutPiece(_currentPiece,newPosition);
+      if (ok)
+      {
+        _position=newPosition;
+        _field.movePiece(_currentPiece,_position);
+        _gField.repaint();
+      }
+    }
   }
 
   public boolean buildNewPiece()
@@ -111,21 +172,40 @@ public class TetrisBrain
     // todo place piece smartlier
     _position=new TetrisPiecePosition(5,20);
     TetrisPieceRotation rotation=TetrisPieceRotation.CLOCKWISE;
-    TetrisPiece piece=new TetrisPiece(pieceModel,rotation);
+    Color color=pickRandomColor();
+    TetrisPiece piece=new TetrisPiece(pieceModel,rotation,color);
     boolean canPut=_field.canPutPiece(piece,_position);
     if (canPut)
     {
       _field.putPiece(piece,_position);
       _currentPiece=piece;
-      _gField.repaint();
+      repaintGameField();
       return true;
     }
     return false;
   }
 
+  private Color pickRandomColor()
+  {
+    int index=_random.nextInt(COLORS.length);
+    return COLORS[index];
+  }
+
+  private void repaintGameField()
+  {
+    _gField.repaint();
+  }
+
   public void endOfPiece()
   {
+    // Handle score
     TetrisScoreComputer scoreMgr=_game.getScoreManager();
     scoreMgr.addPiece(_currentPiece.getModel());
+    // Remove completed lines
+    int nbLines=_field.removeAllCompletedLines();
+    if (nbLines>0)
+    {
+      repaintGameField();
+    }
   }
 }

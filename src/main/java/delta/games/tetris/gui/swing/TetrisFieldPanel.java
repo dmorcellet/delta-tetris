@@ -72,7 +72,7 @@ public class TetrisFieldPanel extends JPanel
     int height=_field.getHeight();
     int x=MARGIN;
     int y=MARGIN;
-    Color color=Color.GRAY;
+    Color color;
     TetrisPiece piece;
     for(int j=height-1;j>=0;j--)
     {
@@ -82,7 +82,7 @@ public class TetrisFieldPanel extends JPanel
         piece=_field.getPieceAt(i,j);
         if (piece!=null)
         {
-          color=Color.GRAY;
+          color=piece.getColor();
         }
         else
         {
