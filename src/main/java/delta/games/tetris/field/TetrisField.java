@@ -90,7 +90,7 @@ public class TetrisField
           rotation.rotate(delta);
           // Translate to position
           finalX=x0+delta[0];
-          finalY=y0+delta[1];
+          finalY=y0-delta[1];
           _squaresOccupation[finalX][finalY]=piece;
         }
       }
@@ -255,7 +255,7 @@ public class TetrisField
           rotation.rotate(delta);
           // Translate to position
           finalX=x0+delta[0];
-          finalY=y0+delta[1];
+          finalY=y0-delta[1];
           // Check inclusion
           if (finalX<0) return false;
           if (finalX>=_width) return false;
@@ -281,8 +281,14 @@ public class TetrisField
     TetrisPiece piece;
     TetrisPieceModel model;
     String name;
+    ps.print("   ");
+    for(int i=0;i<_width;i++) ps.print((char)('a'+i));
+    ps.println("");
     for(int j=_height-1;j>=0;j--)
     {
+      if (j<10) ps.print('0');
+      ps.print(j);
+      ps.print(' ');
       for(int i=0;i<_width;i++)
       {
         piece=_squaresOccupation[i][j];

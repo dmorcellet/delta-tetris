@@ -2,6 +2,7 @@ package delta.games.tetris.pieces;
 
 import org.apache.log4j.Logger;
 
+import delta.common.utils.misc.MiscStringConstants;
 import delta.games.tetris.utils.TetrisLoggers;
 
 /**
@@ -136,5 +137,33 @@ public class TetrisPieceModel
   public int getHotY()
   {
     return _yHot;
+  }
+
+  @Override
+  public String toString()
+  {
+    StringBuilder sb=new StringBuilder();
+    int lines=_definition[0].length;
+    int columns=_definition.length;
+    for(int i=0;i<lines;i++)
+    {
+      for(int j=0;j<columns;j++)
+      {
+        if ((j==_xHot) && (i==_yHot))
+        {
+          sb.append('*');
+        }
+        else if (_definition[j][i])
+        {
+          sb.append('x');
+        }
+        else
+        {
+          sb.append(' ');
+        }
+      }
+      sb.append(MiscStringConstants.NATIVE_EOL);
+    }
+    return sb.toString();
   }
 }

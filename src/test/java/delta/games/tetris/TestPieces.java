@@ -5,6 +5,10 @@ import junit.framework.TestCase;
 import delta.games.tetris.pieces.TetrisPieceModel;
 import delta.games.tetris.pieces.TetrisPiecesRegistry;
 
+/**
+ * Test pieces registry.
+ * @author DAM
+ */
 public class TestPieces extends TestCase
 {
   /**
@@ -15,6 +19,10 @@ public class TestPieces extends TestCase
     super("Tetris Pieces");
   }
 
+  /**
+   * Test pieces access.
+   *
+   */
   public void testGetPieces()
   {
     TetrisPiecesRegistry registry=TetrisPiecesRegistry.getInstance();

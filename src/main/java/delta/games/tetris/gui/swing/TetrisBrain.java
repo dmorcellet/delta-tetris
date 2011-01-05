@@ -153,7 +153,7 @@ public class TetrisBrain
     if (_currentPiece!=null)
     {
       _currentPiece.rotate(true);
-      TetrisPiecePosition newPosition=new TetrisPiecePosition(_position.getX()-1,_position.getY());
+      TetrisPiecePosition newPosition=new TetrisPiecePosition(_position.getX(),_position.getY());
       boolean ok=_field.canPutPiece(_currentPiece,newPosition);
       if (ok)
       {
@@ -164,10 +164,13 @@ public class TetrisBrain
     }
   }
 
+  private static int INDEX=0;
   public boolean buildNewPiece()
   {
     TetrisPieceModel[] pieces=_piecesRegistry.getPieces();
-    int index=_random.nextInt(pieces.length);
+    int index=(INDEX%pieces.length);
+    INDEX++;
+    //int index=_random.nextInt(pieces.length);
     TetrisPieceModel pieceModel=pieces[index];
     // todo place piece smartlier
     _position=new TetrisPiecePosition(5,20);

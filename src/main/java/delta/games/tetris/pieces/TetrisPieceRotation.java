@@ -9,44 +9,41 @@ public final class TetrisPieceRotation
   /**
    * No rotation.
    */
-  public static final TetrisPieceRotation NONE=new TetrisPieceRotation(0);
+  public static final TetrisPieceRotation NONE=new TetrisPieceRotation(0,"NONE");
 
   /**
    * 90° clockwise rotation.
    */
-  public static final TetrisPieceRotation CLOCKWISE=new TetrisPieceRotation(1);
+  public static final TetrisPieceRotation CLOCKWISE=new TetrisPieceRotation(1,"90CW");
 
   /**
    * 180° rotation.
    */
-  public static final TetrisPieceRotation HORIZONTAL_MIRROR=new TetrisPieceRotation(2);
+  public static final TetrisPieceRotation HORIZONTAL_MIRROR=new TetrisPieceRotation(2,"HM");
 
   /**
    * 90° counter-clockwise rotation.
    */
-  public static final TetrisPieceRotation COUNTERCLOCKWISE=new TetrisPieceRotation(3);
+  public static final TetrisPieceRotation COUNTERCLOCKWISE=new TetrisPieceRotation(3,"90CCW");
+
+  /**
+   * Array of existing rotations.
+   */
+  public static final TetrisPieceRotation[] ROTATIONS={NONE, CLOCKWISE, HORIZONTAL_MIRROR, COUNTERCLOCKWISE };
+
+  private int _index;
+  private String _name;
+  private TetrisPieceRotation _next;
+  private TetrisPieceRotation _previous;
 
   /**
    * Private constructor.
    * The only instances of this class are in-class instanciated public static attributes.
    */
-  private TetrisPieceRotation()
-  {
-    // Nothing to do !!
-  }
-
-  /**
-   * Array of existing rotations.
-   */
-  private static final TetrisPieceRotation[] ROTATIONS={NONE, CLOCKWISE, HORIZONTAL_MIRROR, COUNTERCLOCKWISE };
-
-  private int _index;
-  private TetrisPieceRotation _next;
-  private TetrisPieceRotation _previous;
-
-  private TetrisPieceRotation(int index)
+  private TetrisPieceRotation(int index, String name)
   {
     _index=index;
+    _name=name;
     _next=null;
   }
 
@@ -110,19 +107,26 @@ public final class TetrisPieceRotation
   {
     if (this==CLOCKWISE)
     {
-      int tmp=coordinates[1];
-      coordinates[1]=-coordinates[0];
-      coordinates[0]=tmp;
-    }
-    else if (this==HORIZONTAL_MIRROR)
-    {
-      coordinates[0]=-coordinates[0];
-    }
-    else if (this==COUNTERCLOCKWISE)
-    {
       int tmp=coordinates[0];
       coordinates[0]=-coordinates[1];
       coordinates[1]=tmp;
     }
+    else if (this==HORIZONTAL_MIRROR)
+    {
+      coordinates[0]=-coordinates[0];
+      coordinates[1]=-coordinates[1];
+    }
+    else if (this==COUNTERCLOCKWISE)
+    {
+      int tmp=coordinates[0];
+      coordinates[0]=coordinates[1];
+      coordinates[1]=-tmp;
+    }
+  }
+  
+  @Override
+  public String toString()
+  {
+    return _name;
   }
 }

@@ -16,6 +16,7 @@ public class TetrisPiece
    * Constructor.
    * @param piece Model for this piece.
    * @param rotation Rotation for this piece.
+   * @param color Color of piece.
    */
   public TetrisPiece(TetrisPieceModel piece, TetrisPieceRotation rotation, Color color)
   {

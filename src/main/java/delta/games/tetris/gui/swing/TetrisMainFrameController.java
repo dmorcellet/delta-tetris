@@ -24,6 +24,7 @@ import delta.games.tetris.field.TetrisField;
  */
 public class TetrisMainFrameController implements ActionListener
 {
+  private static final int TIMER_DELAY=1000;
   private JFrame _frame;
   private TetrisBrain _brain;
   private TetrisGame _tetrisGame;
@@ -192,7 +193,7 @@ public class TetrisMainFrameController implements ActionListener
       }
     };
     
-    _guiTimer=new Timer(300,action);
+    _guiTimer=new Timer(TIMER_DELAY,action);
     _guiTimer.start();
   }
 
