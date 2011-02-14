@@ -20,6 +20,7 @@ import delta.games.tetris.TetrisGame;
 import delta.games.tetris.field.TetrisField;
 
 /**
+ * Controller for the Tetris main frame.
  * @author DAM
  */
 public class TetrisMainFrameController implements ActionListener
@@ -35,11 +36,19 @@ public class TetrisMainFrameController implements ActionListener
   private TetrisSidePanel _sidePanel;
   private Timer _guiTimer;
 
+  /**
+   * Constructor.
+   *
+   */
   public TetrisMainFrameController()
   {
     _tetrisGame=new TetrisGame();
   }
 
+  /**
+   * Get the managed frame (build it if necessary).
+   * @return A frame.
+   */
   public JFrame getFrame()
   {
     if (_frame==null)
@@ -119,11 +128,18 @@ public class TetrisMainFrameController implements ActionListener
     return mainPanel;
   }
 
+  /**
+   * Get the Tetris field panel.
+   * @return the Tetris field panel.
+   */
   public TetrisFieldPanel getFieldPanel()
   {
     return _fieldPanel;
   }
 
+  /**
+   * Show the managed frame.
+   */
   public void show()
   {
     JFrame frame=getFrame();
@@ -202,6 +218,10 @@ public class TetrisMainFrameController implements ActionListener
     System.exit(0);
   }
 
+  /**
+   * Main method for the Tetris game.
+   * @param args Not used.
+   */
   public static void main(String[] args)
   {
     TetrisMainFrameController controller=new TetrisMainFrameController();

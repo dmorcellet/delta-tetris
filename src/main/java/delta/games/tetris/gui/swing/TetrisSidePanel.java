@@ -13,6 +13,7 @@ import delta.games.tetris.TetrisGame;
 import delta.games.tetris.score.TetrisScoreComputer;
 
 /**
+ * Panel that displays the game status (player name,score,...).
  * @author DAM
  */
 public class TetrisSidePanel extends JPanel
@@ -23,6 +24,10 @@ public class TetrisSidePanel extends JPanel
   private JLabel _level;
   private JLabel _score;
 
+  /**
+   * Constructor.
+   * @param game Game to show.
+   */
   public TetrisSidePanel(TetrisGame game)
   {
     super(new GridBagLayout());
@@ -87,13 +92,16 @@ public class TetrisSidePanel extends JPanel
     }
   }
 
-  private static void setLabelSize(JLabel label, float size)
+  private void setLabelSize(JLabel label, float size)
   {
     Font font=label.getFont();
     font=font.deriveFont(size);
     label.setFont(font);
   }
 
+  /**
+   * Updates the display.
+   */
   public void update()
   {
     String playerName=_game.getPlayerName();

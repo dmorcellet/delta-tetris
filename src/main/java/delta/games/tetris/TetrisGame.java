@@ -6,6 +6,7 @@ import delta.games.tetris.score.TetrisPiecesStatistics;
 import delta.games.tetris.score.TetrisScoreComputer;
 
 /**
+ * Gathers all data about a Tetris game.
  * @author DAM
  */
 public class TetrisGame
@@ -18,6 +19,9 @@ public class TetrisGame
   private int _currentLevel;
   private String _playerName;
 
+  /**
+   * Constructor.
+   */
   public TetrisGame()
   {
     _config=new TetrisGameCfg();
@@ -31,31 +35,55 @@ public class TetrisGame
     _playerName="";
   }
 
+  /**
+   * Get the Tetris field.
+   * @return the Tetris field.
+   */
   public TetrisField getField()
   {
     return _field;
   }
 
+  /**
+   * Get the Tetris pieces registry.
+   * @return the Tetris pieces registry.
+   */
   public TetrisPiecesRegistry getPiecesRegistry()
   {
     return _pieces;
   }
 
+  /**
+   * Get the statistics about used pieces.
+   * @return the statistics about used pieces.
+   */
   public TetrisPiecesStatistics getStats()
   {
     return _stats;
   }
 
+  /**
+   * Get the Tetris score manager.
+   * @return the Tetris score manager.
+   */
   public TetrisScoreComputer getScoreManager()
   {
     return _score;
   }
 
+  /**
+   * Get the current level.
+   * @return the current level.
+   */
   public int getCurrentLevel()
   {
     return _currentLevel;
   }
 
+  /**
+   * Get the name of the current player.
+   * @return a player name.
+   */
   public String getPlayerName()
   {
     return _playerName;

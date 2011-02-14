@@ -39,6 +39,8 @@ public final class TetrisPieceRotation
   /**
    * Private constructor.
    * The only instances of this class are in-class instanciated public static attributes.
+   * @param index Index of rotation.
+   * @param name Name of rotation.
    */
   private TetrisPieceRotation(int index, String name)
   {

@@ -13,6 +13,7 @@ import delta.games.tetris.pieces.TetrisPiecesRegistry;
 import delta.games.tetris.score.TetrisScoreComputer;
 
 /**
+ * Animates a Tetris game and the matching display.
  * @author DAM
  */
 public class TetrisBrain
@@ -32,6 +33,11 @@ public class TetrisBrain
   // Colors
   private static Color[] COLORS={Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK};
 
+  /**
+   * Constructor.
+   * @param game Game to manage.
+   * @param gameField Display panel for this game.
+   */
   public TetrisBrain(TetrisGame game, TetrisFieldPanel gameField)
   {
     _gField=gameField;
@@ -43,6 +49,13 @@ public class TetrisBrain
     _random=new Random(System.currentTimeMillis());
   }
 
+  /**
+   * Timer action:
+   * <ul>
+   * <li>creates a new piece if needed and possible,
+   * <li>moves this pieces if possible.
+   * </ul>
+   */
   public void doTick()
   {
     if (_currentPiece==null)
@@ -59,7 +72,7 @@ public class TetrisBrain
     }
   }
   
-  public void doAutoMovePiece()
+  private void doAutoMovePiece()
   {
     TetrisPiecePosition newPosition=new TetrisPiecePosition(_position.getX(),_position.getY()-1);
     boolean ok=_field.canPutPiece(_currentPiece,newPosition);
@@ -77,6 +90,9 @@ public class TetrisBrain
     repaintGameField();
   }
 
+  /**
+   * Handles a 'end of piece' request from the user.
+   */
   public void handleEndOfPiece()
   {
     if (_currentPiece!=null)
@@ -113,6 +129,9 @@ public class TetrisBrain
     }
   }
 
+  /**
+   * Handles a 'move right' request from the user.
+   */
   public void handleMoveRight()
   {
     if (_currentPiece!=null)
@@ -128,6 +147,9 @@ public class TetrisBrain
     }
   }
 
+  /**
+   * Handles a 'move left' request from the user.
+   */
   public void handleMoveLeft()
   {
     if (_currentPiece!=null)
@@ -143,11 +165,17 @@ public class TetrisBrain
     }
   }
 
+  /**
+   * Handles a 'rotate left' request from the user.
+   */
   public void handleRotateLeft()
   {
     // todo
   }
 
+  /**
+   * Handles a 'rotate right' request from the user.
+   */
   public void handleRotateRight()
   {
     if (_currentPiece!=null)
@@ -165,7 +193,7 @@ public class TetrisBrain
   }
 
   private static int INDEX=0;
-  public boolean buildNewPiece()
+  private boolean buildNewPiece()
   {
     TetrisPieceModel[] pieces=_piecesRegistry.getPieces();
     int index=(INDEX%pieces.length);
@@ -199,7 +227,7 @@ public class TetrisBrain
     _gField.repaint();
   }
 
-  public void endOfPiece()
+  private void endOfPiece()
   {
     // Handle score
     TetrisScoreComputer scoreMgr=_game.getScoreManager();

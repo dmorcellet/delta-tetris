@@ -122,6 +122,10 @@ public class TetrisField
     return -1;
   }
 
+  /**
+   * Remove all the full lines.
+   * @return Number of removed lines.
+   */
   public int removeAllCompletedLines()
   {
     int nbRemoved=0;
@@ -141,7 +145,11 @@ public class TetrisField
     return nbRemoved;
   }
 
-  public int findCompletedLine()
+  /**
+   * Find the index of a full line.
+   * @return A line index or <code>-1</code> if not found.
+   */
+  private int findCompletedLine()
   {
     int index=-1;
     for(int j=0;j<_height;j++)
