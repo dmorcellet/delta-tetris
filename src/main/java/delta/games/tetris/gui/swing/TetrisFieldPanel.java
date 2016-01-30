@@ -73,13 +73,12 @@ public class TetrisFieldPanel extends JPanel
     int x=MARGIN;
     int y=MARGIN;
     Color color;
-    TetrisPiece piece;
     for(int j=height-1;j>=0;j--)
     {
       x=MARGIN;
       for(int i=0;i<width;i++)
       {
-        piece=_field.getPieceAt(i,j);
+        TetrisPiece piece=_field.getPieceAt(i,j);
         if (piece!=null)
         {
           color=piece.getColor();
