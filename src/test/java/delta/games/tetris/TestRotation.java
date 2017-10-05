@@ -12,6 +12,10 @@ import delta.games.tetris.pieces.TetrisPiecePosition;
 import delta.games.tetris.pieces.TetrisPieceRotation;
 import delta.games.tetris.pieces.TetrisPiecesRegistry;
 
+/**
+ * Test for pieces rotation.
+ * @author DAM
+ */
 public class TestRotation extends TestCase
 {
   /**
@@ -22,6 +26,9 @@ public class TestRotation extends TestCase
     super("Tetris Piece Rotation");
   }
 
+  /**
+   * Test pieces rotation.
+   */
   public void testPiecesRotation()
   {
     TetrisPiecesRegistry registry=TetrisPiecesRegistry.getInstance();

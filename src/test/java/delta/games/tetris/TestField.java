@@ -10,6 +10,10 @@ import delta.games.tetris.pieces.TetrisPiecePosition;
 import delta.games.tetris.pieces.TetrisPieceRotation;
 import delta.games.tetris.pieces.TetrisPiecesRegistry;
 
+/**
+ * Test for the Tetris field.
+ * @author DAM
+ */
 public class TestField extends TestCase
 {
   /**
@@ -20,6 +24,9 @@ public class TestField extends TestCase
     super("Tetris Field");
   }
 
+  /**
+   * Test field filling.
+   */
   public void testFillField()
   {
     TetrisPiecesRegistry registry=TetrisPiecesRegistry.getInstance();
