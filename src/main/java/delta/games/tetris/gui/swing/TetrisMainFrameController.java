@@ -38,7 +38,6 @@ public class TetrisMainFrameController implements ActionListener
 
   /**
    * Constructor.
-   *
    */
   public TetrisMainFrameController()
   {

@@ -3,7 +3,6 @@ package delta.games.tetris.pieces;
 import org.apache.log4j.Logger;
 
 import delta.common.utils.misc.MiscStringConstants;
-import delta.games.tetris.utils.TetrisLoggers;
 
 /**
  * A model of a TETRIS piece.
@@ -11,7 +10,7 @@ import delta.games.tetris.utils.TetrisLoggers;
  */
 public class TetrisPieceModel
 {
-  private static final Logger _logger=TetrisLoggers.getTetrisPiecesLogger();
+  private static final Logger LOGGER=Logger.getLogger(TetrisPieceModel.class);
   /**
    * Piece model identifier.
    */
@@ -79,7 +78,7 @@ public class TetrisPieceModel
     }
     if (!hotPointFound)
     {
-      _logger.warn("Hot point not found for piece ["+_name+"] Using default one : "+_xHot+","+_yHot);
+      LOGGER.warn("Hot point not found for piece ["+_name+"] Using default one : "+_xHot+","+_yHot);
     }
   }
 
