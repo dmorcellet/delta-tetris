@@ -170,7 +170,7 @@ public class TetrisMainFrameController implements ActionListener
 
       public void keyReleased(KeyEvent e)
       {
-        //keyTyped(e);
+        // Nothing!
       }
 
       public void keyTyped(KeyEvent e)
@@ -214,6 +214,11 @@ public class TetrisMainFrameController implements ActionListener
 
   private void doQuit()
   {
+    if (_guiTimer!=null)
+    {
+      _guiTimer.stop();
+      _guiTimer=null;
+    }
     System.exit(0);
   }
 

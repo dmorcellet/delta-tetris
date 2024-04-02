@@ -70,12 +70,11 @@ public class TetrisFieldPanel extends JPanel
     super.paintComponent(g);
     int width=_field.getWidth();
     int height=_field.getHeight();
-    int x=MARGIN;
     int y=MARGIN;
     Color color;
     for(int j=height-1;j>=0;j--)
     {
-      x=MARGIN;
+      int x=MARGIN;
       for(int i=0;i<width;i++)
       {
         TetrisPiece piece=_field.getPieceAt(i,j);

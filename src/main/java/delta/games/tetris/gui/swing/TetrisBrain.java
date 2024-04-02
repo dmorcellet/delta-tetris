@@ -31,7 +31,7 @@ public class TetrisBrain
   private Random _random;
 
   // Colors
-  private static Color[] COLORS={Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK};
+  private static final Color[] COLORS={Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK};
 
   /**
    * Constructor.
@@ -100,23 +100,15 @@ public class TetrisBrain
       int x=_position.getX();
       int y=_position.getY();
       int previousY=y;
-      
-      while(true)
+      while(y>0)
       {
-        if (y>0)
-        {
-          TetrisPiecePosition newPosition=new TetrisPiecePosition(x,y-1);
-          boolean ok=_field.canPutPiece(_currentPiece,newPosition);
-          if (!ok)
-          {
-            break;
-          }
-          y--;
-        }
-        else
+        TetrisPiecePosition newPosition=new TetrisPiecePosition(x,y-1);
+        boolean ok=_field.canPutPiece(_currentPiece,newPosition);
+        if (!ok)
         {
           break;
         }
+        y--;
       }
       if (y!=previousY)
       {
@@ -192,13 +184,10 @@ public class TetrisBrain
     }
   }
 
-  private static int INDEX=0;
   private boolean buildNewPiece()
   {
     TetrisPieceModel[] pieces=_piecesRegistry.getPieces();
-    int index=(INDEX%pieces.length);
-    INDEX++;
-    //int index=_random.nextInt(pieces.length);
+    int index=_random.nextInt(pieces.length);
     TetrisPieceModel pieceModel=pieces[index];
     // todo place piece smartlier
     _position=new TetrisPiecePosition(5,20);

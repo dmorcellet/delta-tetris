@@ -29,7 +29,7 @@ public final class TetrisPieceRotation
   /**
    * Array of existing rotations.
    */
-  public static final TetrisPieceRotation[] ROTATIONS={NONE, CLOCKWISE, HORIZONTAL_MIRROR, COUNTERCLOCKWISE };
+  private static final TetrisPieceRotation[] ROTATIONS={NONE, CLOCKWISE, HORIZONTAL_MIRROR, COUNTERCLOCKWISE };
 
   private int _index;
   private String _name;

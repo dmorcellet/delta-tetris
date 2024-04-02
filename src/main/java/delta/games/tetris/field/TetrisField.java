@@ -178,8 +178,10 @@ public class TetrisField
    */
   public void removeLine(int y)
   {
-    assert(y>=0);
-    assert(y<_height);
+    if ((y<0) || (y>=_height))
+    {
+      throw new IllegalArgumentException("Bad y value: "+y+" (shall be 0<=y<"+_height+")");
+    }
     for(int j=y+1;j<_height;j++)
     {
       for(int i=0;i<_width;i++)

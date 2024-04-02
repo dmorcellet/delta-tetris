@@ -8,6 +8,7 @@ import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import delta.games.tetris.TetrisGame;
 import delta.games.tetris.score.TetrisScoreComputer;
@@ -38,10 +39,11 @@ public class TetrisSidePanel extends JPanel
   private void buildGUI()
   {
     GridBagConstraints constraints;
-    int x=0,y=0;
+    int x=0;
+    int y=0;
     // Tetris main label
     {
-      JLabel tetrisLabel=new JLabel("Tetris",JLabel.CENTER);
+      JLabel tetrisLabel=new JLabel("Tetris",SwingConstants.CENTER);
       setLabelSize(tetrisLabel,72f);
       if (DEBUG)
       {
@@ -54,7 +56,7 @@ public class TetrisSidePanel extends JPanel
     y++;
     // Player name
     {
-      _playerName=new JLabel("Joe",JLabel.CENTER);
+      _playerName=new JLabel("Joe",SwingConstants.CENTER);
       setLabelSize(_playerName,36f);
       if (DEBUG)
       {
@@ -67,7 +69,7 @@ public class TetrisSidePanel extends JPanel
     y++;
     // Level
     {
-      _level=new JLabel("Niveau 1",JLabel.CENTER);
+      _level=new JLabel("Niveau 1",SwingConstants.CENTER);
       setLabelSize(_level,24f);
       if (DEBUG)
       {
@@ -80,7 +82,7 @@ public class TetrisSidePanel extends JPanel
     y++;
     // Score
     {
-      _score=new JLabel("Score : 0",JLabel.CENTER);
+      _score=new JLabel("Score : 0",SwingConstants.CENTER);
       setLabelSize(_score,24f);
       if (DEBUG)
       {
