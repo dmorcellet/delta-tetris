@@ -35,18 +35,10 @@ public class TetrisPieceModel
    */
   public TetrisPieceModel(String name, String[] definition)
   {
-    if (definition==null) throw new IllegalArgumentException();
-    int lines=definition.length;
-    if (lines==0) throw new IllegalArgumentException();
-    int columns=definition[0].length();
-    for(int i=0;i<lines;i++)
-    {
-      if (definition[i].length()!=columns)
-      {
-        throw new IllegalArgumentException();
-      }
-    }
+    checksBefore(definition);
     _name=name;
+    int lines=definition.length;
+    int columns=definition[0].length();
     _definition=new boolean[columns][lines];
     boolean empty=true;
     boolean hotPointFound=false;
@@ -72,6 +64,26 @@ public class TetrisPieceModel
         }
       }
     }
+    checksAfter(empty,hotPointFound);
+  }
+
+  private void checksBefore(String[] definition)
+  {
+    if (definition==null) throw new IllegalArgumentException();
+    int lines=definition.length;
+    if (lines==0) throw new IllegalArgumentException();
+    int columns=definition[0].length();
+    for(int i=0;i<lines;i++)
+    {
+      if (definition[i].length()!=columns)
+      {
+        throw new IllegalArgumentException();
+      }
+    }
+  }
+
+  private void checksAfter(boolean empty, boolean hotPointFound)
+  {
     if (empty)
     {
       throw new IllegalArgumentException("Empty piece !");

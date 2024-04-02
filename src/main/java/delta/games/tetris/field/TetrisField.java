@@ -251,7 +251,6 @@ public class TetrisField
     int finalX;
     int finalY;
     int[] delta=new int[2];
-    TetrisPiece existingPiece;
     for(int i=0;i<width;i++)
     {
       for(int j=0;j<height;j++)
@@ -267,12 +266,8 @@ public class TetrisField
           finalX=x0+delta[0];
           finalY=y0-delta[1];
           // Check inclusion
-          if (finalX<0) return false;
-          if (finalX>=_width) return false;
-          if (finalY<0) return false;
-          if (finalY>=_height) return false;
-          existingPiece=getPieceAt(finalX,finalY);
-          if ((existingPiece!=null) && (existingPiece!=piece))
+          boolean ok=check(piece,finalX,finalY);
+          if (!ok)
           {
             return false;
           }
@@ -280,6 +275,16 @@ public class TetrisField
       }
     }
     return true;
+  }
+
+  private boolean check(TetrisPiece piece, int finalX, int finalY)
+  {
+    if (finalX<0) return false;
+    if (finalX>=_width) return false;
+    if (finalY<0) return false;
+    if (finalY>=_height) return false;
+    TetrisPiece existingPiece=getPieceAt(finalX,finalY);
+    return ((existingPiece==null) || (existingPiece==piece));
   }
 
   /**

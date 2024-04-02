@@ -158,14 +158,6 @@ public class TetrisBrain
   }
 
   /**
-   * Handles a 'rotate left' request from the user.
-   */
-  public void handleRotateLeft()
-  {
-    // todo
-  }
-
-  /**
    * Handles a 'rotate right' request from the user.
    */
   public void handleRotateRight()
