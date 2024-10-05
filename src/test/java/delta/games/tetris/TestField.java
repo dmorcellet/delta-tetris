@@ -2,7 +2,9 @@ package delta.games.tetris;
 
 import java.awt.Color;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import delta.games.tetris.field.TetrisField;
 import delta.games.tetris.pieces.TetrisPiece;
 import delta.games.tetris.pieces.TetrisPieceModel;
@@ -14,20 +16,14 @@ import delta.games.tetris.pieces.TetrisPiecesRegistry;
  * Test for the Tetris field.
  * @author DAM
  */
-public class TestField extends TestCase
+@DisplayName("Tetris Field")
+class TestField
 {
-  /**
-   * Constructor.
-   */
-  public TestField()
-  {
-    super("Tetris Field");
-  }
-
   /**
    * Test field filling.
    */
-  public void testFillField()
+  @Test
+  void testFillField()
   {
     TetrisPiecesRegistry registry=TetrisPiecesRegistry.getInstance();
     TetrisPieceModel[] pieces=registry.getPieces();

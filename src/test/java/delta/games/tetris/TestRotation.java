@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import delta.games.tetris.field.TetrisField;
 import delta.games.tetris.pieces.TetrisPiece;
 import delta.games.tetris.pieces.TetrisPieceModel;
@@ -16,20 +18,14 @@ import delta.games.tetris.pieces.TetrisPiecesRegistry;
  * Test for pieces rotation.
  * @author DAM
  */
-public class TestRotation extends TestCase
+@DisplayName("Tetris Piece Rotation")
+class TestRotation
 {
-  /**
-   * Constructor.
-   */
-  public TestRotation()
-  {
-    super("Tetris Piece Rotation");
-  }
-
   /**
    * Test pieces rotation.
    */
-  public void testPiecesRotation()
+  @Test
+  void testPiecesRotation()
   {
     TetrisPiecesRegistry registry=TetrisPiecesRegistry.getInstance();
     TetrisPieceModel[] pieces=registry.getPieces();
@@ -38,7 +34,7 @@ public class TestRotation extends TestCase
       doPieceRotation(pieces[i]);
     }
   }
-  
+
   private void doPieceRotation(TetrisPieceModel model)
   {
     TetrisField field=new TetrisField(10,10);

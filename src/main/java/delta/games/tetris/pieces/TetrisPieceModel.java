@@ -1,6 +1,7 @@
 package delta.games.tetris.pieces;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import delta.common.utils.misc.MiscStringConstants;
 
@@ -10,7 +11,7 @@ import delta.common.utils.misc.MiscStringConstants;
  */
 public class TetrisPieceModel
 {
-  private static final Logger LOGGER=Logger.getLogger(TetrisPieceModel.class);
+  private static final Logger LOGGER=LoggerFactory.getLogger(TetrisPieceModel.class);
   /**
    * Piece model identifier.
    */
@@ -90,7 +91,8 @@ public class TetrisPieceModel
     }
     if (!hotPointFound)
     {
-      LOGGER.warn("Hot point not found for piece ["+_name+"] Using default one : "+_xHot+","+_yHot);
+      String message="Hot point not found for piece ["+_name+"] Using default one : "+_xHot+","+_yHot;
+      LOGGER.warn(message);
     }
   }
 

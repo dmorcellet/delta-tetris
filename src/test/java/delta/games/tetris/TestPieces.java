@@ -1,7 +1,10 @@
 package delta.games.tetris;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import delta.games.tetris.pieces.TetrisPieceModel;
 import delta.games.tetris.pieces.TetrisPiecesRegistry;
 
@@ -9,25 +12,19 @@ import delta.games.tetris.pieces.TetrisPiecesRegistry;
  * Test pieces registry.
  * @author DAM
  */
-public class TestPieces extends TestCase
+@DisplayName("Tetris Pieces")
+class TestPieces
 {
-  /**
-   * Constructor.
-   */
-  public TestPieces()
-  {
-    super("Tetris Pieces");
-  }
-
   /**
    * Test pieces access.
    *
    */
-  public void testGetPieces()
+  @Test
+  void testGetPieces()
   {
     TetrisPiecesRegistry registry=TetrisPiecesRegistry.getInstance();
-    Assert.assertNotNull(registry);
+    assertNotNull(registry);
     TetrisPieceModel[] pieces=registry.getPieces();
-    Assert.assertNotNull(pieces);
+    assertNotNull(pieces);
   }
 }
